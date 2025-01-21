@@ -1,4 +1,13 @@
-const inputField = document.getElementById("task-input");
-const addButton = document.querySelector("#add-task-btn");
+const taskInput = document.getElementById("taskInput");
+const addTaskBtn = document.getElementById("addTaskBtn");
+const taskList = document.getElementById("taskList");
 
-addButton.addEventListener("click", function () {});
+addTaskBtn.addEventListener("click", function () {
+  const taskText = taskInput.ariaValueText.trim();
+  if (taskText) {
+    const li = document.createElement("li");
+    li.textContent = taskText;
+    taskList.appendChild(li);
+    taskInput.nodeValue = "";
+  }
+});

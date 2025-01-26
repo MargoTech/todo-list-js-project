@@ -20,6 +20,25 @@ function renderTasks() {
     const li = document.createElement("li");
     li.textContent = task;
 
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.style.marginRight = "10px";
+    checkbox.checked = task.completed;
+    li.prepend(checkbox);
+
+    if (task.completed) {
+      li.classList.add("completed");
+    }
+
+    checkbox.addEventListener("change", function () {
+      tasks[index].completed = checkbox.checked;
+      saveTasks();
+      renderTasks();
+    });
+
+    const taskText = document.createElement("span");
+    taskText.textContent = task.text;
+
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Delete";
     deleteBtn.style.marginLeft = "10px";

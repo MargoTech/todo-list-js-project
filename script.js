@@ -24,7 +24,6 @@ function renderTasks() {
     checkbox.type = "checkbox";
     checkbox.style.marginRight = "10px";
     checkbox.checked = task.completed;
-    li.prepend(checkbox);
 
     if (task.completed) {
       li.classList.add("completed");
@@ -47,7 +46,10 @@ function renderTasks() {
       deleteTask(index);
     });
 
+    li.appendChild(checkbox);
+    li.appendChild(taskText);
     li.appendChild(deleteBtn);
+
     taskList.appendChild(li);
   });
 }
@@ -55,21 +57,10 @@ function renderTasks() {
 addTaskBtn.addEventListener("click", function () {
   const taskText = taskInput.value.trim();
   if (taskText) {
-    tasks.push(taskText);
+    tasks.push({ text: taskText, completed: false });
     saveTasks();
     renderTasks();
     taskInput.value = "";
-    // const li = document.createElement("li");
-    // li.textContent = taskText;
-    // const deleteBtn = document.createElement("button");
-    // deleteBtn.textContent = "Delete";
-    // deleteBtn.style.marginLeft = "10px";
-    // deleteBtn.addEventListener("click", () => {
-    //   li.remove();
-    // });
-    // li.appendChild(deleteBtn);
-    // taskList.appendChild(li);
-    // taskInput.value = "";
   }
 });
 

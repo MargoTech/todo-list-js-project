@@ -18,7 +18,6 @@ function renderTasks() {
 
   tasks.forEach((task, index) => {
     const li = document.createElement("li");
-    li.textContent = task;
 
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
@@ -49,9 +48,14 @@ function renderTasks() {
     li.appendChild(checkbox);
     li.appendChild(taskText);
     li.appendChild(deleteBtn);
-
     taskList.appendChild(li);
   });
+}
+
+function deleteTask(index) {
+  tasks.splice(index, 1);
+  saveTasks();
+  renderTasks();
 }
 
 addTaskBtn.addEventListener("click", function () {
@@ -63,12 +67,6 @@ addTaskBtn.addEventListener("click", function () {
     taskInput.value = "";
   }
 });
-
-function deleteTask(index) {
-  tasks.splice(index, 1);
-  saveTasks();
-  renderTasks();
-}
 
 loadTasks();
 renderTasks();
